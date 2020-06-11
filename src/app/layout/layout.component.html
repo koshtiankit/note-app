@@ -1,0 +1,13 @@
+<div class="main-container">
+    <app-header [sidebar]="sidebar"></app-header>
+    <mat-sidenav-container hasBackdrop="false" autosize class="sidenav-container">
+        <mat-sidenav #sidenav opened="true" [mode]="'side'" fixedInViewport="true" fixedTopGap="64" style="min-width : 64px important;">
+            <app-sidebar #sidebar></app-sidebar>
+        </mat-sidenav>
+        <mat-sidenav-content class="sidenav-content">
+            <div class="pd16-LR pd8-T pd16-B">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

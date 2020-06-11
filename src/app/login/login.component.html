@@ -1,0 +1,47 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;">
+    <mat-card class="login-container">
+      <form [formGroup]="loginForm">
+        <div align="center" class="mrg4-B">
+          <img src="assets/images/logo.png" class="logo" alt="shelter4u logo" />
+        </div>
+        <mat-card-content>
+          <mat-form-field fxLayout="column" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="Email"
+              placeholder="Email"
+              autofocus
+            />
+          </mat-form-field>
+          <mat-form-field fxLayout="column" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              [type]="hide ? 'text' : 'password'"
+              required
+              matInput
+              formControlName="Password"
+              placeholder="Password"
+            />
+            <a
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility" : "visibility_off" }}</mat-icon>
+            </a>
+          </mat-form-field>
+        </mat-card-content>
+        <div fxLayoutAlign="space-between center">
+          <button mat-button mat-raised-button color="primary">
+            Login
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

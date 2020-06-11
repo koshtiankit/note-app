@@ -1,0 +1,76 @@
+$bg-color:#101b33;
+$white:#ffffff;
+$light-gray:#e1eafa;
+$blue: #1890ff;
+$dark-blue: #2066ff;
+$red: #da251d;
+
+.mat-toolbar-row{
+  padding-left: 0;
+}
+.header-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 203px;
+    background-color:$bg-color;
+    height: 64px;
+    text-align: center;
+	.logo{
+		max-width: 40%;
+    	height: auto;
+	}
+}
+
+.menuIconRight {
+    flex: 1 1 auto;
+}
+
+.app-toolbar {
+  // position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+.mat-icon-button{
+  background-color:$light-gray; 
+  color: $dark-blue;
+  border-radius: 50%;
+  margin-left: 3px;
+  -webkit-font-smoothing: antialiased;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  margin: 0 15px;
+  position: relative;
+  .mat-icon.mat-primary{
+    color:$dark-blue; 
+  }
+  &:hover{
+    background-color:$blue;
+    color:$white; 
+    .mat-icon.mat-primary{
+      color:$white; 
+    }
+  }
+}
+.user-block{
+  color: #959cb6;
+  font-size: 13px;
+}
+.mat-menu-panel{
+  box-shadow: 0 0 0;
+  border: 1px solid #eae8e8;
+  border-radius: 0 0;
+  margin-top: 12px;
+}
+.mat-badge-accent .mat-badge-content{
+  background-color:$red;
+}
+
+.global-search{
+  margin-top: 12px !important;
+}
+.serach-icon{
+  height: 22px !important;
+}

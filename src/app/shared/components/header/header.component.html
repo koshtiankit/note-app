@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="app-toolbar header-section">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="toggleSidebar()">notes</mat-icon>
+    </button>
+    <span fxFlex>Notes</span>
+    <div class="user-block">
+      <span>Hi, {{ userProfile.FirstName }} {{ userProfile.LastName }}</span>
+      <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="User Account"
+          fontSet="material-icons-outlined"
+        >
+          supervised_user_circle</mat-icon
+        >
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-menu x-position="before" y-position="below" #userMenu="matMenu">
+  <a mat-menu-item (click)="logout()">
+    <mat-icon aria-label="logout">power_settings_new</mat-icon>Logout
+  </a>
+</mat-menu>
