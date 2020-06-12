@@ -31,4 +31,22 @@ export class CommonService {
       //this.router.navigateByUrl('/login', { replaceUrl: true });
     }
   }
+
+   /**
+   * Encodes base64 string
+   * @param str 
+   * @returns  encoded base64 string
+   */
+  public encodeBase64(str: any) {
+    return btoa(str);
+  }
+
+  /**
+   * Decodes base64 string
+   * @param str 
+   * @returns  decoded value from base64 string
+   */
+  public decodeBase64(str: any) {
+    return atob(str);
+  }
 }

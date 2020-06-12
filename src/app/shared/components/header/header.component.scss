@@ -1,5 +1,5 @@
 $bg-color:#101b33;
-$white:#ffffff;
+$white:#fff;
 $light-gray:#e1eafa;
 $blue: #1890ff;
 $dark-blue: #2066ff;
@@ -27,12 +27,11 @@ $red: #da251d;
 }
 
 .app-toolbar {
-  // position: fixed;
-  top: 0;
+ top: 0;
   z-index: 1000;
 }
 .mat-icon-button{
-  background-color:$light-gray; 
+  background-color:$white; 
   color: $dark-blue;
   border-radius: 50%;
   margin-left: 3px;

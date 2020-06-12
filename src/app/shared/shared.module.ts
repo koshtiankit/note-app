@@ -8,7 +8,7 @@ import { CommonService, UserAuthenticationService } from './services';
 
 import { HeaderComponent, SidebarComponent } from './components';
 
-import { AuthGuard } from './guards';
+import { AuthGuard, GuestGuard } from './guards';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -31,6 +31,6 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
   ],
   entryComponents: [],
-  providers: [AuthGuard, CommonService, UserAuthenticationService],
+  providers: [AuthGuard, GuestGuard, CommonService, UserAuthenticationService],
 })
 export class SharedModule {}

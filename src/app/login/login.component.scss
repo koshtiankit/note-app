@@ -9,6 +9,12 @@
 .main-container {
   height: 90vh;
 }
+.height-full{
+  background-image: url("https://d3ukzap5f2wa8d.cloudfront.net/wp-content/uploads/20170824120532/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-attachment: fixed;
+}
 
 .login-btn {
   background-color: indigo;

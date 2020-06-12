@@ -1,5 +1,32 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+* {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin transition($value) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  transition: $value;
+  -o-transition: $value;
+}
+$p-color: #72849a;
+
+body,
+html {
+  font-family: Roboto, sans-serif !important;
+  height: auto;
+  width: 100%;
+  background-color: #f4f5fa;
+  color: $p-color;
+}
+
+.mat-drawer-container {
+  background-color: #f4f5fa;
+}
+
 .mrg4-B {
   margin-bottom: 0.4rem !important;
 }

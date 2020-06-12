@@ -13,13 +13,10 @@ export class AuthGuard implements CanActivate {
         if (localStorage.getItem('isLoggedIn') === 'true') {
             if (route.routeConfig.path === 'login' && route.queryParams.redirectTo) {
 
-                let checkdata = JSON.parse(localStorage.getItem('currentUser'));
+                //let checkdata = JSON.parse(localStorage.getItem('currentUser'));
               
-                if (checkdata['IsRequiredPasswordChange'] != true) {
                     this.router.navigateByUrl(route.queryParams.redirectTo);
-                }else {
-                    this.router.navigate(['changepassword?ID=']);
-                }
+                
             }
 
             return true;

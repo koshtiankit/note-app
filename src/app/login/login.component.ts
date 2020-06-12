@@ -36,45 +36,16 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
     let dataToPost = {
       email: this.loginForm.value.Email,
-      password: this.loginForm.value.Password,
+      password: this.commonService.encodeBase64(this.loginForm.value.Password),
     };
 
     const responseData = this.userAuthenticationService.doLogin(dataToPost);
-    console.log('responseData', responseData);
 
     if (responseData.isSuccess) {
       this.router.navigate(['application']);
     } else {
       this.messageService.showError(responseData.Message);
     }
-
-    // this.allSubscribers.push(
-    //   this.userAuthenticationService.doLogin(dataToPost).subscribe(
-    //     (response: any) => {
-    //       let userInfo = response.Result.UserInfo;
-    //       this.userAuthenticationService.saveUserInfoToLocalStorage(userInfo);
-    //       this.commonService.setMenus();
-
-    //       setTimeout(() => {
-    //         if (response.Result.UserInfo.IsRequiredPasswordChange != true) {
-    //           this.router.navigate(['application']);
-    //         } else {
-    //           this.router.navigateByUrl(
-    //             'changepassword?ID=' +
-    //               encodeURI(
-    //                 this.utilService.encodeBase64(
-    //                   response.Result.UserInfo.UserId
-    //                 )
-    //               )
-    //           );
-    //         }
-    //       }, 1000);
-    //     },
-    //     (errors) => {
-    //       this.errorHandlingService.showErrorDialog(errors.error.Message);
-    //     }
-    //   )
-    // );
   }
 
   ngAfterViewInit() {}

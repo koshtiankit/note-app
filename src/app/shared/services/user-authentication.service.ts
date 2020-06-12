@@ -8,6 +8,22 @@ declare var ENDPOINTS;
   providedIn: 'root',
 })
 export class UserAuthenticationService {
+
+  users = [
+  {
+    email: "ankit15595@gmail.com",
+    password: "Pass@1234",
+    FirstName: "Ankit",
+    LastName: "Koshti"
+  },
+   {
+    email: "parag.khalash@gmail.com",
+    password: "Pass@123",
+    FirstName: "Parag",
+    LastName: "Khalash"
+  }
+  ];
+
   constructor(public router: Router, private commonService: CommonService) {}
 
   /**
@@ -15,28 +31,34 @@ export class UserAuthenticationService {
    */
   public doLogin(data) {
     const { email, password } = data;
+    console.log('password', password);
+    console.log('this.commonService.decodeBase64(password)', this.commonService.decodeBase64(password));
     let response = {
       isSuccess: true,
       Message: 'Success',
     };
+    
+    const validUser = this.users.filter(user => user.email == email && user.password == this.commonService.decodeBase64(password));
+    console.log("isValidUser", validUser);
 
-    response.isSuccess = false;
-    response.Message = 'Invalid Email/Password try again';
+    if(!validUser || !validUser.length){
+      response.isSuccess = false;
+      response.Message = 'Invalid Email/Password.. try again';
+    }else{
+      // success
+      validUser.map((user) => {
+        delete user.password;
+      })
+      console.log('isValidUser 50', validUser);
 
+      this.saveUserInfoToLocalStorage(validUser[0]);
+
+    }
+    
     return response;
-
-    //return (response.status = 204);
-    //response.Message = 'Invalid Email/Password try again';
   }
 
-  /**
-   * Match passwords
-   * @param data - object
-   * @returns true or false - if not match
-   */
-  matchPasswords(data) {
-    return data.confirmPassword !== data.Password ? false : true;
-  }
+  
 
   saveUserInfoToLocalStorage(userInfo) {
     try {
