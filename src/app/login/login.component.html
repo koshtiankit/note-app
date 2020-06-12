@@ -1,50 +1,68 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-  <div fxLayout="column" fxLayoutAlign="center center" class="main-container">
-    <mat-card class="login-container">
-      <form [formGroup]="loginForm">
-        <div align="center" class="mrg4-B">
-          <h2>Notes</h2>
-        </div>
-        <mat-card-content>
-          <mat-form-field fxLayout="column" appearance="outline">
-            <mat-label>Email</mat-label>
-            <input
-              type="email"
-              matInput
-              formControlName="Email"
-              placeholder="Email"
-              autofocus
-            />
-          </mat-form-field>
-          <mat-form-field fxLayout="column" appearance="outline">
-            <mat-label>Password</mat-label>
-            <input
-              [type]="hide ? 'text' : 'password'"
-              matInput
-              formControlName="Password"
-              placeholder="Password"
-            />
-            <a
-              mat-icon-button
-              matSuffix
-              (click)="hide = !hide"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide"
-            >
-              <mat-icon>{{ hide ? "visibility" : "visibility_off" }}</mat-icon>
-            </a>
-          </mat-form-field>
-          <button
-            class="login-btn"
-            mat-button
-            mat-raised-button
-            color="primary"
-            (click)="submitForm()"
-          >
-            Log In
-          </button>
-        </mat-card-content>
-      </form>
-    </mat-card>
-  </div>
+<div
+    fxLayout="row"
+    fxLayoutAlign="center center"
+>
+    <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        class="main-container"
+    >
+        <mat-card class="login-container">
+            <form [formGroup]="loginForm">
+                <div
+                    align="center"
+                    class="mrg4-B"
+                >
+                    <h2>Notes</h2>
+                </div>
+                <mat-card-content>
+                    <mat-form-field
+                        fxLayout="column"
+                        appearance="outline"
+                    >
+                        <mat-label>Email</mat-label>
+                        <input
+                            type="email"
+                            matInput
+                            formControlName="Email"
+                            placeholder="Email"
+                            autofocus
+                        >
+                    </mat-form-field>
+                    <mat-form-field
+                        fxLayout="column"
+                        appearance="outline"
+                    >
+                        <mat-label>Password</mat-label>
+                        <input
+                            [type]="hide ? 'text' : 'password'"
+                            matInput
+                            formControlName="Password"
+                            placeholder="Password"
+                        >
+                        <a
+                            mat-icon-button
+                            matSuffix
+                            (click)="hide = !hide"
+                            [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide"
+                        >
+                            <mat-icon>
+                                {{ hide ? "visibility" : "visibility_off" }}
+                            </mat-icon>
+                        </a>
+                    </mat-form-field>
+                    <button
+                        class="login-btn"
+                        mat-button
+                        mat-raised-button
+                        color="primary"
+                        (click)="actionLogin()"
+                    >
+                        Log In
+                    </button>
+                </mat-card-content>
+            </form>
+        </mat-card>
+    </div>
 </div>

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.createLoginForm();
   }
 
-  submitForm() {
+  actionLogin() {
     if (this.loginForm.invalid) return;
 
     let dataToPost = {
