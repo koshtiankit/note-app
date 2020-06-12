@@ -74,45 +74,8 @@ export class AddEditNotesComponent implements OnInit {
       this.noteService.saveNoteToLocalStorage(dataToPush);
       this.notesListCallBack.emit(dataToPush);
     }
-    //this.router.navigate(['./application/notes']);
-
-    // const notes = this.noteService.getAllNotes();
-    // if (!notes) {
-    //   const dataToPush = [
-    //     {
-    //       created: new Date(),
-    //       description: this.notesForm.value.description,
-    //       category: this.notesForm.value.category,
-    //     },
-    //   ];
-    //   this.noteService.saveNoteToLocalStorage(dataToPush);
-    //   this.router.navigate(['./application/notes']);
-    // } else {
-    //   notes &&
-    //     notes.map((note, index) => {
-    //       if (index == this.notesForm.value.id) {
-    //         notes[index]['created'] = new Date();
-    //         notes[index]['description'] = this.notesForm.value.description;
-    //         notes[index]['category'] = this.notesForm.value.category;
-    //       } else {
-    //         const dataToPush = {
-    //           created: new Date(),
-    //           description: this.notesForm.value.description,
-    //           category: this.notesForm.value.category,
-    //         };
-    //         notes.push(dataToPush);
-    //       }
-    //     });
-    //   this.noteService.saveNoteToLocalStorage(notes);
-    //   this.router.navigate(['./application/notes']);
-    // }
   }
 
-  redirectTo(uri) {
-    this.router
-      .navigateByUrl('/', { skipLocationChange: true })
-      .then(() => this.router.navigate([uri]));
-  }
   ngOnDestroy() {
     //unsubscribe here all subscription
     this.noteService.sendNoteData(null);
