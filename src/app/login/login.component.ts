@@ -14,8 +14,6 @@ import {
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   loginForm: FormGroup;
-  private allSubscribers: Array<any> = [];
-  public loginButtonDisable: boolean = false;
   public hide: boolean = false;
 
   constructor(
@@ -61,6 +59,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.allSubscribers.map((value) => value.unsubscribe());
+    //unsubscribe here all subscription
   }
 }
