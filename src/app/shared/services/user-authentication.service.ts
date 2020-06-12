@@ -14,10 +14,19 @@ export class UserAuthenticationService {
    * login request API
    */
   public doLogin(data) {
-    return this.commonService.makePostRequest(
-      ENDPOINTS.API + '/User/Authenticate',
-      data
-    );
+    const { email, password } = data;
+    let response = {
+      isSuccess: true,
+      Message: 'Success',
+    };
+
+    response.isSuccess = false;
+    response.Message = 'Invalid Email/Password try again';
+
+    return response;
+
+    //return (response.status = 204);
+    //response.Message = 'Invalid Email/Password try again';
   }
 
   /**

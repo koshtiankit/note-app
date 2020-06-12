@@ -20,7 +20,6 @@
             <mat-label>Password</mat-label>
             <input
               [type]="hide ? 'text' : 'password'"
-              required
               matInput
               formControlName="Password"
               placeholder="Password"
@@ -40,6 +39,7 @@
             mat-button
             mat-raised-button
             color="primary"
+            (click)="submitForm()"
           >
             Log In
           </button>

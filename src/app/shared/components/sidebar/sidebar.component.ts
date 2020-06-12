@@ -6,7 +6,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ErrorHandlingService, CommonService } from '../../services';
+import { MessageService, CommonService } from '../../services';
 
 @Component({
   selector: 'app-sidebar',
@@ -22,17 +22,13 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     public router: Router,
     private cd: ChangeDetectorRef,
     private commonService: CommonService,
-    private errorHandlingService: ErrorHandlingService
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
     //let data = JSON.parse(localStorage.getItem('currentUser')).RolePermission;
     // console.log('data', data);
     this.menuList = JSON.parse(localStorage.getItem('menuList'));
-  }
-
-  menudata(data) {
-    this.commonService.setMenuValue(data);
   }
 
   ngAfterViewInit() {}

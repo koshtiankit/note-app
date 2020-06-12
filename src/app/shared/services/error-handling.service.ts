@@ -4,24 +4,45 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root',
 })
-export class ErrorHandlingService {
+export class MessageService {
   constructor(private _snackBar: MatSnackBar) {}
 
   /**
-   * Shows error dialog
-   * @param [errorMsg] - string - Error message
+   * Shows error message
+   * @param message - string - Error message
    */
-  showErrorDialog(errorMsg: string = 'Something went wrong..!') {
+  showError(errorMsg: string = 'Something went wrong..!') {
     this.openSnackBar(errorMsg, 5000);
   }
 
-  openSnackBar(message, duration = 2000, onClickClose?) {
-    if (onClickClose) {
-      this._snackBar.open(message, 'close');
-    } else {
-      this._snackBar.open(message, 'close', {
-        duration: duration,
-      });
-    }
+  /**
+   * Shows success message
+   * @param message - string
+   */
+
+  showSuccess(message: string) {
+    this.openSnackBar(message, 5000);
   }
+
+  /**
+   * Shows success message
+   * @param message - string
+   * @param duration - number(miliseconds) - duration of auto close message
+   */
+
+  openSnackBar(message, duration = 2000) {
+    this._snackBar.open(message, 'close', {
+      duration: duration,
+    });
+  }
+
+  // openSnackBar(message, duration = 2000, onClickClose?) {
+  //   if (onClickClose) {
+  //     this._snackBar.open(message, 'close');
+  //   } else {
+  //     this._snackBar.open(message, 'close', {
+  //       duration: duration,
+  //     });
+  //   }
+  // }
 }

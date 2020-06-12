@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-// import {
-//   UserAuthenticationService,
-//   ErrorHandlingService,
-//   CommonService,
-// } from '../shared/services';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  UserAuthenticationService,
+  MessageService,
+  CommonService,
+} from '../shared/services';
 
 @Component({
   selector: 'app-login',
@@ -21,35 +21,32 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public router: Router,
     public route: ActivatedRoute,
-    private formBuilder: FormBuilder
-  ) // private userAuthenticationService: UserAuthenticationService,
-  // private commonService: CommonService,
-  // private errorHandlingService: ErrorHandlingService
-  {}
+    private formBuilder: FormBuilder,
+    private userAuthenticationService: UserAuthenticationService,
+    private commonService: CommonService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
     this.createLoginForm();
   }
 
-  formValidations = {
-    Email: [
-      { type: 'required', message: 'Email is required' },
-      // { type: 'pattern', message: 'Email is incorrect' },
-    ],
-    Password: [
-      { type: 'required', message: 'Password is required' },
-      // { type: 'minlength', message: 'Password must be at least 8 characters long' },
-      // { type: 'pattern', message: 'Password must contain uppercase, lowercase letters, numbers and special characters !@#$%&*' },
-    ],
-  };
-
   submitForm() {
     if (this.loginForm.invalid) return;
 
-    // let dataToPost = {
-    //   Email: this.utilService.encodeBase64(this.loginForm.value.Email),
-    //   Password: this.utilService.encodeBase64(this.loginForm.value.Password),
-    // };
+    let dataToPost = {
+      email: this.loginForm.value.Email,
+      password: this.loginForm.value.Password,
+    };
+
+    const responseData = this.userAuthenticationService.doLogin(dataToPost);
+    console.log('responseData', responseData);
+
+    if (responseData.isSuccess) {
+      this.router.navigate(['application']);
+    } else {
+      this.messageService.showError(responseData.Message);
+    }
 
     // this.allSubscribers.push(
     //   this.userAuthenticationService.doLogin(dataToPost).subscribe(
