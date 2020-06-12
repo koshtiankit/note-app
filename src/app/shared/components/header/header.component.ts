@@ -12,7 +12,6 @@ import { UserAuthenticationService } from '../../services/user-authentication.se
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input() sidebar: SidebarComponent;
 
-  public allSubscribers: Array<any> = [];
   public userProfile: any;
 
   constructor(
@@ -22,11 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    //this.userProfile = JSON.parse(localStorage.getItem('currentUser'));
-    this.userProfile = {
-      FirstName: 'Ankit',
-      LastName: 'Koshti',
-    };
+    this.userProfile = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   toggleSidebar() {
@@ -38,6 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.allSubscribers.map((value) => value.unsubscribe());
+    //unsubscribe here all subscription
   }
 }

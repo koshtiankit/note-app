@@ -14,8 +14,7 @@ import { MessageService, CommonService } from '../../services';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
-  public allSubscribers: Array<any> = [];
-  public isSidenavExpanded: boolean = true;
+  public isSidenavExpanded: boolean = false;
   public menuList = [];
 
   constructor(
@@ -25,19 +24,15 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     private messageService: MessageService
   ) {}
 
-  ngOnInit() {
-    //let data = JSON.parse(localStorage.getItem('currentUser')).RolePermission;
-    // console.log('data', data);
-    this.menuList = JSON.parse(localStorage.getItem('menuList'));
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {}
 
-  public toggleSidenav() {
+  toggleSidenav() {
     this.isSidenavExpanded = !this.isSidenavExpanded;
   }
 
   ngOnDestroy() {
-    this.allSubscribers.map((value) => value.unsubscribe());
+    //unsubscribe here all subscription
   }
 }
