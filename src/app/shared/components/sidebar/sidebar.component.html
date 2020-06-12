@@ -1,6 +1,6 @@
-<mat-nav-list>
+<!-- <mat-nav-list>
   <ng-container *ngTemplateOutlet="menuViewTemplate"></ng-container>
-</mat-nav-list>
+</mat-nav-list> -->
 
 <!-- <ng-template #menuViewTemplate let-menuList>
 	<ng-container *ngFor="let menu of menuList">
@@ -32,53 +32,17 @@
 	</ng-container>
 </ng-template>
  -->
-<ng-template #menuViewTemplate>
-  <mat-nav-list>
-    <mat-list-item routerLink="users" routerLinkActive="active-link">
-      <mat-icon mat-list-icon>person</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Users</h4>
-    </mat-list-item>
-    <mat-list-item routerLink="projects" routerLinkActive="active-link">
-      <mat-icon mat-list-icon>assignment</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Projects</h4>
-    </mat-list-item>
-    <mat-list-item routerLink="masters/roles" routerLinkActive="active-link">
-      <mat-icon mat-list-icon>person</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Roles</h4>
-    </mat-list-item>
-    <mat-list-item
-      routerLink="masters/permission"
-      routerLinkActive="active-link"
-    >
-      <mat-icon mat-list-icon>pan_tool</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Permission</h4>
-    </mat-list-item>
-    <mat-list-item
-      routerLink="masters/user-permission"
-      routerLinkActive="active-link"
-    >
-      <mat-icon mat-list-icon>pan_tool</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">user-Permission</h4>
-    </mat-list-item>
-    <mat-list-item routerLink="masters/devloper" routerLinkActive="active-link">
-      <mat-icon mat-list-icon>pan_tool</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Devloper</h4>
-    </mat-list-item>
-    <mat-list-item routerLink="masters/location" routerLinkActive="active-link">
-      <mat-icon mat-list-icon>pan_tool</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Location</h4>
-    </mat-list-item>
-    <mat-list-item routerLink="masters/broker" routerLinkActive="active-link">
-      <mat-icon mat-list-icon>pan_tool</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Broker</h4>
-    </mat-list-item>
-    <mat-list-item routerLink="masters/supplier" routerLinkActive="active-link">
-      <mat-icon mat-list-icon>pan_tool</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Supplier</h4>
-    </mat-list-item>
-    <mat-list-item routerLink="masters/customer" routerLinkActive="active-link">
-      <mat-icon mat-list-icon>pan_tool</mat-icon>
-      <h4 mat-line *ngIf="isSidenavExpanded">Customer</h4>
-    </mat-list-item>
-  </mat-nav-list>
-</ng-template>
+<mat-nav-list *ngIf="isSidenavExpanded">
+  <mat-list-item routerLink="users" routerLinkActive="active-link">
+    <mat-icon mat-list-icon>done</mat-icon>
+    <h4 mat-line>Users</h4>
+  </mat-list-item>
+  <mat-list-item routerLink="projects" routerLinkActive="active-link">
+    <mat-icon mat-list-icon>done</mat-icon>
+    <h4 mat-line>Projects</h4>
+  </mat-list-item>
+  <mat-list-item routerLink="masters/roles" routerLinkActive="active-link">
+    <mat-icon mat-list-icon>done</mat-icon>
+    <h4 mat-line>Roles</h4>
+  </mat-list-item>
+</mat-nav-list>

@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-  <div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;">
+  <div fxLayout="column" fxLayoutAlign="center center" class="main-container">
     <mat-card class="login-container">
       <form [formGroup]="loginForm">
         <div align="center" class="mrg4-B">
-          <img src="assets/images/logo.png" class="logo" alt="shelter4u logo" />
+          <h2>Notes</h2>
         </div>
         <mat-card-content>
           <mat-form-field fxLayout="column" appearance="outline">
@@ -35,12 +35,15 @@
               <mat-icon>{{ hide ? "visibility" : "visibility_off" }}</mat-icon>
             </a>
           </mat-form-field>
-        </mat-card-content>
-        <div fxLayoutAlign="space-between center">
-          <button mat-button mat-raised-button color="primary">
-            Login
+          <button
+            class="login-btn"
+            mat-button
+            mat-raised-button
+            color="primary"
+          >
+            Log In
           </button>
-        </div>
+        </mat-card-content>
       </form>
     </mat-card>
   </div>

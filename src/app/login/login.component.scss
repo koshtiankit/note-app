@@ -1,7 +1,30 @@
 .login-container {
-    margin: auto;
-    width: 400px;
-    padding: 2vh;
-    background-color: #fff;
-    padding: 15px;
+  margin: auto;
+  width: 350px;
+  padding: 2vh;
+  background-color: #fff;
+  padding: 15px;
+}
+
+.main-container {
+  height: 90vh;
+}
+
+.login-btn {
+  background-color: indigo;
+  border: 1px solid #dfe1e6;
+  color: #fff;
+  padding: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 5px;
+  box-shadow: none;
+  width: 100%;
+  margin-bottom: 5px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }

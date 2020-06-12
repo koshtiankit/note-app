@@ -22,7 +22,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.userProfile = JSON.parse(localStorage.getItem('currentUser'));
+    //this.userProfile = JSON.parse(localStorage.getItem('currentUser'));
+    this.userProfile = {
+      FirstName: 'Ankit',
+      LastName: 'Koshti',
+    };
   }
 
   public toggleSidebar() {
