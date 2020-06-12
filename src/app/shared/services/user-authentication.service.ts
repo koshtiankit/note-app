@@ -30,7 +30,7 @@ export class UserAuthenticationService {
    */
   doLogin(data) {
     const { email, password } = data;
-    console.log('password', password);
+
     console.log(
       'this.commonService.decodeBase64(password)',
       this.commonService.decodeBase64(password)

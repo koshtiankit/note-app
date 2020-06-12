@@ -6,14 +6,14 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    //children: [
-    // { path: '', redirectTo: 'dashboard' },
-    // {
-    //   path: 'dashboard',
-    //   loadChildren:
-    //     './dashboard/dashboard-master.module#DashboardMasterModule',
-    // },
-    //],
+    children: [
+      { path: '', redirectTo: 'notes' },
+      {
+        path: 'notes',
+        loadChildren: () =>
+          import('./notes/notes.module').then((m) => m.NotesModule),
+      },
+    ],
   },
 ];
 

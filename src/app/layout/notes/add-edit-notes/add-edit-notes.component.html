@@ -1,0 +1,42 @@
+<form [formGroup]="notesForm">
+
+    <mat-card-content>
+        <mat-form-field
+            fxLayout="column"
+            appearance="outline"
+        >
+            <mat-label>Write a Note</mat-label>
+            <textarea
+                matInput
+                placeholder="Write a note"
+                rows="1"
+                formControlName="description"
+            ></textarea>
+        </mat-form-field>
+        <mat-form-field
+            fxLayout
+            appearance="outline"
+        >
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+                <mat-option
+                    *ngFor="let category of categories"
+                    [value]="category.name"
+                >
+                    {{category.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+            <button
+                mat-button
+                mat-raised-button
+                color="primary"
+                (click)="saveNote()"
+            >
+                Save
+            </button>
+        </div>
+
+    </mat-card-content>
+</form>

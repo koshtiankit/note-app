@@ -1,48 +1,17 @@
-<!-- <mat-nav-list>
-  <ng-container *ngTemplateOutlet="menuViewTemplate"></ng-container>
-</mat-nav-list> -->
-
-<!-- <ng-template #menuViewTemplate let-menuList>
-	<ng-container *ngFor="let menu of menuList">
-
-		<mat-list-item (click)="menudata(menu)" *ngIf="menu.Child && menu.Child.length <= 0" [routerLink]="menu.URL"
-			[routerLinkActive]="['active-link']" routerLinkActiveOptions="{ exact: true }">
-			<a [routerLink]="menu.URL" [routerLinkActive]="['active-link']" routerLinkActiveOptions="{ exact: true }"
-				class="width-100 mrg4-L" *ngIf="isSidenavExpanded">{{menu.Name}}</a>
-			<mat-icon mat-list-icon [matTooltip]="menu.Name" matTooltipClass="tooltip-color" class="menu-button">
-				{{menu.IconCssClass}}</mat-icon>
-		</mat-list-item>
-
-		<mat-list-item *ngIf="menu.Child && menu.Child.length > 0" [routerLinkActive]="['active-link']"
-			routerLinkActiveOptions="{ exact: true }" (click)="menu.showChildMenu = !menu.showChildMenu">
-			<span class="width-100 mrg4-L" *ngIf="isSidenavExpanded">{{menu.Name}}</span>
-			<mat-icon mat-list-icon [matTooltip]="menu.Name" matTooltipClass="tooltip-color">{{menu.IconCssClass}}
-			</mat-icon>
-			<mat-icon class="menu-button" [ngClass]="{'rotated': menu.showChildMenu}" *ngIf="isSidenavExpanded">
-				expand_more
-			</mat-icon>
-		</mat-list-item>
-
-		<ng-container *ngIf="menu.Child && menu.Child.length > 0">
-			<div class="submenu" id="{{menu.Name}}" [ngClass]="{'expanded': menu.showChildMenu}" *ngIf="isSidenavExpanded">
-				<ng-container *ngTemplateOutlet="menuViewTemplate; context:{ $implicit: menu.Child }"></ng-container>
-			</div>
-		</ng-container>
-
-	</ng-container>
-</ng-template>
- -->
 <mat-nav-list *ngIf="isSidenavExpanded">
-  <mat-list-item routerLink="users" routerLinkActive="active-link">
-    <mat-icon mat-list-icon>done</mat-icon>
-    <h4 mat-line>Users</h4>
-  </mat-list-item>
-  <mat-list-item routerLink="projects" routerLinkActive="active-link">
-    <mat-icon mat-list-icon>done</mat-icon>
-    <h4 mat-line>Projects</h4>
-  </mat-list-item>
-  <mat-list-item routerLink="masters/roles" routerLinkActive="active-link">
-    <mat-icon mat-list-icon>done</mat-icon>
-    <h4 mat-line>Roles</h4>
-  </mat-list-item>
+    <mat-list-item
+        routerLink="users"
+        routerLinkActive="active-link"
+    >
+        <mat-icon>done</mat-icon>
+        <h4 mat-line>All</h4>
+    </mat-list-item>
+    <mat-list-item
+        routerLink="users"
+        routerLinkActive="active-link"
+        color="primary"
+    >
+        <mat-icon>done</mat-icon>
+        <h4 mat-line>Select</h4>
+    </mat-list-item>
 </mat-nav-list>

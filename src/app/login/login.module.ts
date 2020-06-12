@@ -7,18 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 import { UserAuthenticationService } from '../shared/services';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        LoginRoutingModule,
-        SharedModule,
-    ],
-    declarations: [LoginComponent],
-    providers: [
-        UserAuthenticationService
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LoginRoutingModule,
+    SharedModule,
+  ],
+  declarations: [LoginComponent],
+  providers: [UserAuthenticationService],
 })
-
-export class LoginModule {
-}
+export class LoginModule {}

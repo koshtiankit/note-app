@@ -1,0 +1,46 @@
+<mat-card>
+    <app-add-edit-notes></app-add-edit-notes>
+</mat-card>
+
+<div
+    fxLayout="row wrap"
+    fxLayout.lt-sm="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="flex-start"
+    class="mrg4-T pad8"
+>
+    <mat-card
+        *ngFor="let note of notes; let i = index"
+        (click)="openEditDialog(note, i)"
+        fxFlex="20"
+        fxLayoutGap="10px"
+        class="mrg8"
+        [style.backgroundColor]="note.category"
+    >
+        <mat-card-header>
+            <div
+                fxLayout="row"
+                fxLayoutAlign="space-between start"
+                fxLayoutGap="10px"
+            >
+                <div>{{note.description}}</div>
+                <div>
+                    <button
+                        mat-mini-fab
+                        color="note.category"
+                        (click)="deleteNote(i)"
+                        aria-label="Delete"
+                    >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+        </mat-card-header>
+        <div fxLayoutAlign="end">
+            {{ note.date |  date}} {{note.date | date:'shortTime'}}
+        </div>
+    </mat-card>
+</div>
+
+<router-outlet></router-outlet>
