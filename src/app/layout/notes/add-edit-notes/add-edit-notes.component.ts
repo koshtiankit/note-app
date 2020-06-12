@@ -59,21 +59,50 @@ export class AddEditNotesComponent implements OnInit {
   }
 
   saveNote() {
-    //console.log('this save called 55', this.notesForm.value.id);
-    if (this.notesForm.value.id) {
+    console.log('this save called 55', this.notesForm.value.id);
+    if (this.notesForm.value.id || this.notesForm.value.id == 0) {
+      console.log('hete 64');
       //update call
+      this.updateNote();
     } else {
       // add new
-      const dataToPush = [
-        {
-          created: new Date(),
-          description: this.notesForm.value.description,
-          category: this.notesForm.value.category,
-        },
-      ];
-      this.noteService.saveNoteToLocalStorage(dataToPush);
-      this.notesListCallBack.emit(dataToPush);
+      //Check if any notes then just push in and save it
+      let notes = [];
+      notes = this.noteService.getAllNotes();
+      let dataToPush = {
+        created: new Date(),
+        description: this.notesForm.value.description,
+        category: this.notesForm.value.category,
+      };
+
+      if (!notes) notes = [];
+      notes.push(dataToPush);
+
+      this.addNotes(notes);
+      this.notesListCallBack.emit(notes);
     }
+  }
+
+  addNotes(dataToPush) {
+    this.noteService.saveNoteToLocalStorage(dataToPush);
+  }
+
+  updateNote() {
+    const noteData = this.noteService.getNoteData();
+    console.log('noteData 90', noteData);
+
+    const oldText = noteData['description'];
+
+    let notes = this.noteService.getAllNotes();
+
+    for (let i = 0; i < notes.length; i++) {
+      if (notes[i].description == oldText) {
+        notes[i].description = this.notesForm.value.description;
+        notes[i].category = this.notesForm.value.category;
+      }
+    }
+    // Set New Notes
+    this.addNotes(notes);
   }
 
   ngOnDestroy() {
