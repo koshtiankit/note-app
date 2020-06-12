@@ -29,12 +29,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     };
   }
 
-  public toggleSidebar() {
+  toggleSidebar() {
     this.sidebar.toggleSidenav();
   }
 
-  public logout() {
-    this.userAuthenticationService.logout();
+  logout() {
+    this.userAuthenticationService.doLogout();
   }
 
   ngOnDestroy() {
