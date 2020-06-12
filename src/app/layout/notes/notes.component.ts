@@ -23,6 +23,7 @@ export class NotesComponent implements OnInit {
   }
 
   getAllNotes() {
+    console.log('yes cAKLLED 27');
     this.notes = this.noteService.getAllNotes();
   }
 
