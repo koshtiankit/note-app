@@ -22,46 +22,53 @@
 
         </ng-container>
         <ng-template #showNotes>
-            <mat-card
-                *ngFor="let note of notes; let i = index"
-                fxFlex="20"
-                fxLayoutGap="10px"
-                class="mrg8-B"
-                [style.backgroundColor]="note.category"
-            >
-                <div
-                    fxLayout="row"
-                    fxLayoutAlign="space-between none"
+
+            <p *ngIf="!notes || !notes.length; else showNotesList">No Data Found</p>
+
+            <ng-template #showNotesList>
+
+                <mat-card
+                    *ngFor="let note of notes; let i = index"
+                    fxFlex="20"
                     fxLayoutGap="10px"
+                    class="mrg8-B"
+                    [style.backgroundColor]="note.category"
                 >
                     <div
-                        fxFlex="80"
-                        (click)="openEditDialog(note, i)"
-                        class="edit-link"
+                        fxLayout="row"
+                        fxLayoutAlign="space-between none"
+                        fxLayoutGap="10px"
                     >
-                        {{note.description}}
-                    </div>
-                    <div fxFlex>
-                        <button
-                            mat-mini-fab
-                            color="none"
-                            (click)="deleteNote(i)"
-                            aria-label="Delete"
+                        <div
+                            fxFlex="80"
+                            (click)="openEditDialog(note, i)"
+                            class="edit-link"
                         >
-                            <mat-icon>delete</mat-icon>
-                        </button>
+                            {{note.description}}
+                        </div>
+                        <div fxFlex>
+                            <button
+                                mat-mini-fab
+                                color="none"
+                                (click)="deleteNote(i)"
+                                aria-label="Delete"
+                            >
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                <div
-                    fxLayout="row"
-                    fxLayoutAlign="end"
-                    fxLayoutGap="10px"
-                    class="mrg4-T"
-                >
-                    {{ note.created |  date}} {{note.created | date:'shortTime'}}
-                </div>
-            </mat-card>
+                    <div
+                        fxLayout="row"
+                        fxLayoutAlign="end"
+                        fxLayoutGap="10px"
+                        class="mrg4-T"
+                    >
+                        {{ note.created |  date}} {{note.created | date:'shortTime'}}
+                    </div>
+                </mat-card>
+            </ng-template>
+
         </ng-template>
 
     </div>
