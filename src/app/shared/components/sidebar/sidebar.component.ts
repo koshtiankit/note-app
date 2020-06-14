@@ -1,12 +1,5 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  OnDestroy,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { Router } from '@angular/router';
-import { MessageService, CommonService } from '../../services';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { NoteService } from 'app/shared/services/note.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,14 +8,8 @@ import { MessageService, CommonService } from '../../services';
 })
 export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   public isSidenavExpanded: boolean = false;
-  public menuList = [];
 
-  constructor(
-    public router: Router,
-    private cd: ChangeDetectorRef,
-    private commonService: CommonService,
-    private messageService: MessageService
-  ) {}
+  constructor(public noteService: NoteService) {}
 
   ngOnInit() {}
 

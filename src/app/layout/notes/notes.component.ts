@@ -1,39 +1,78 @@
-import { MatDialog } from '@angular/material/dialog';
-import { EditNotesDialogComponent } from './edit-notes-dialog/edit-notes-dialog.component';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { NoteService } from '../../shared/services';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ConfirmDialogComponent, CommonService, NoteService } from '@shared';
+import { EditNotesDialogComponent } from './edit-notes-dialog/edit-notes-dialog.component';
 
+const NOTELISTURL = '/application/notes?category=all';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
 })
 export class NotesComponent implements OnInit {
+  private allSubscribers: Array<any> = [];
+  isLoading: boolean = true;
   notes = [];
+  categoryFilter: string = 'all';
 
   constructor(
+    private commonService: CommonService,
     public noteService: NoteService,
-    private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.getAllNotes();
+    if (this.router.url !== NOTELISTURL) {
+      this.commonService.appendURLParameters('category', 'all');
+    }
+
+    this.allSubscribers.push(
+      this.route.queryParams.subscribe((params) => {
+        this.categoryFilter = params.category || 'all';
+        this.getAllNotes();
+      })
+    );
   }
 
-  getAllNotes() {
-    console.log('yes cAKLLED 27');
+  getAllNotes(data?) {
     this.notes = this.noteService.getAllNotes();
+
+    //filtering notes based on filter value
+    if (this.categoryFilter !== 'all') {
+      this.notes = this.notes.filter(
+        (note) => note.category == this.categoryFilter
+      );
+    }
+    this.isLoading = false;
   }
 
   deleteNote(index) {
-    this.notes.splice(index, 1);
-    this.noteService.updateNotesAfterDelete(this.notes);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.data = {
+      title: 'Delete Note',
+      body: 'Are you sure you want to delete this note?',
+      okButton: true,
+      cancelButton: true,
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
+
+    this.allSubscribers.push(
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.notes.splice(index, 1);
+          this.noteService.saveNoteToLocalStorage(this.notes);
+          this.isLoading = false;
+        }
+      })
+    );
   }
 
   openEditDialog(note, index) {
-    console.log('note', note);
     this.dialog.open(EditNotesDialogComponent, {
       width: '50%',
       autoFocus: false,
@@ -44,5 +83,6 @@ export class NotesComponent implements OnInit {
 
   ngOnDestroy() {
     //unsubscribe here all subscription
+    this.allSubscribers.map((value) => value.unsubscribe());
   }
 }

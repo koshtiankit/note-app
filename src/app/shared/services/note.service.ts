@@ -7,57 +7,49 @@ import { CommonService } from './common.service';
 })
 export class NoteService {
   noteData = {};
-  notes = [
-    {
-      description: 'sample note 1',
-      date: new Date(),
-      category: 'yellow',
-    },
-    {
-      description: 'sample note 2',
-      date: new Date(),
-      category: 'green',
-    },
-    {
-      description: 'sample note 3',
-      date: new Date(),
-      category: 'red',
-    },
+
+  categories = [
+    { name: 'yellowgreen' },
+    { name: 'cadetblue' },
+    { name: 'chocolate' },
+    { name: 'crimson' },
+    { name: 'darkgoldenrod' },
+    { name: 'darkcyan' },
+    { name: 'cornflowerblue' },
   ];
-  constructor(private commonService: CommonService) {
-    //this.saveNotes();
-  }
+
+  constructor(private commonService: CommonService) {}
 
   /**
-   * Gets all users
-   * @returns users
+   * Gets all notes
+   * @returns notes
    */
   getAllNotes() {
     let notes = [];
     notes = JSON.parse(localStorage.getItem('notes'));
     return notes;
   }
+
   /**
    * Save notes to local storage
-   * @returns users
+   *
    */
   saveNoteToLocalStorage(notes) {
     localStorage.setItem('notes', JSON.stringify(notes));
   }
 
   /**
-   * Delete Note
-   * @param user
-   * @returns user
+   * Set note data for edit note
+   * @param - data - note data object
    */
-  updateNotesAfterDelete(notes) {
-    localStorage.setItem('notes', JSON.stringify(notes));
-  }
-
   sendNoteData(data) {
     this.noteData = data;
   }
 
+  /**
+   * get note data for edit note
+   *
+   */
   getNoteData() {
     return this.noteData;
   }

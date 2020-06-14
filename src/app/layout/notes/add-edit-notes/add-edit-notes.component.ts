@@ -1,13 +1,9 @@
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { NoteService } from './../../../shared/services/note.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { CommonService, NoteService } from '@shared';
+import { EditNotesDialogComponent } from './../edit-notes-dialog/edit-notes-dialog.component';
 
 @Component({
   selector: 'app-add-edit-notes',
@@ -15,22 +11,15 @@ import {
   styleUrls: ['./add-edit-notes.component.scss'],
 })
 export class AddEditNotesComponent implements OnInit {
+  @Output() notesListCallBack: EventEmitter<any> = new EventEmitter<Boolean>();
   notesForm: FormGroup;
-  @Output() notesListCallBack: EventEmitter<any> = new EventEmitter();
 
-  categories = [
-    { name: 'darkgrey' },
-    { name: 'darkcyan' },
-    { name: 'cadetblue' },
-    { name: 'chocolate' },
-    { name: 'darkgoldenrod' },
-    { name: 'crimson' },
-    { name: 'yellowgreen' },
-  ];
   constructor(
     private formBuilder: FormBuilder,
-    private noteService: NoteService,
-    private router: Router
+    public noteService: NoteService,
+    public commonService: CommonService,
+    private router: Router,
+    private dialogRef: MatDialogRef<EditNotesDialogComponent>
   ) {}
 
   ngOnInit() {
@@ -39,6 +28,9 @@ export class AddEditNotesComponent implements OnInit {
     if (noteData) this.setNoteDataToForm(noteData);
   }
 
+  /**
+   * Creates notes form
+   */
   setNoteDataToForm(noteData) {
     this.notesForm.patchValue({
       description: noteData.description,
@@ -58,18 +50,21 @@ export class AddEditNotesComponent implements OnInit {
     });
   }
 
+  /**
+   * Saving notes
+   */
   saveNote() {
-    console.log('this save called 55', this.notesForm.value.id);
+    const isEmptyNoteAndCategory = this.noteAndCategoryIsEmpty();
+    if (isEmptyNoteAndCategory) return;
+
     if (this.notesForm.value.id || this.notesForm.value.id == 0) {
-      console.log('hete 64');
-      //update call
       this.updateNote();
     } else {
       // add new
       //Check if any notes then just push in and save it
       let notes = [];
       notes = this.noteService.getAllNotes();
-      let dataToPush = {
+      const dataToPush = {
         created: new Date(),
         description: this.notesForm.value.description,
         category: this.notesForm.value.category,
@@ -78,19 +73,30 @@ export class AddEditNotesComponent implements OnInit {
       if (!notes) notes = [];
       notes.push(dataToPush);
 
-      this.addNotes(notes);
-      this.notesListCallBack.emit(notes);
+      this.noteService.saveNoteToLocalStorage(notes);
+      this.notesListCallBack.emit(true);
+      this.notesForm.reset();
     }
   }
 
-  addNotes(dataToPush) {
-    this.noteService.saveNoteToLocalStorage(dataToPush);
+  /**
+   * Check if note and category is empty then return
+   */
+  noteAndCategoryIsEmpty() {
+    const description =
+      this.notesForm.value.description &&
+      this.notesForm.value.description.trimLeft();
+    if (!description && !this.notesForm.value.category) {
+      return true;
+    }
+    return false;
   }
 
+  /**
+   * Update existing note
+   */
   updateNote() {
     const noteData = this.noteService.getNoteData();
-    console.log('noteData 90', noteData);
-
     const oldText = noteData['description'];
 
     let notes = this.noteService.getAllNotes();
@@ -101,12 +107,15 @@ export class AddEditNotesComponent implements OnInit {
         notes[i].category = this.notesForm.value.category;
       }
     }
-    // Set New Notes
-    this.addNotes(notes);
+    // Set the Notes
+    this.noteService.saveNoteToLocalStorage(notes);
+    //update notes list component
+    this.commonService.redirectToUrl(this.router.url);
+    this.dialogRef.close();
   }
 
   ngOnDestroy() {
-    //unsubscribe here all subscription
+    //unsubscribe here all subscription and empty necessary data
     this.noteService.sendNoteData(null);
   }
 }

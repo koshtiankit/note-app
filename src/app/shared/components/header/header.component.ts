@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-
-import { Router, ActivatedRoute } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { UserAuthenticationService } from '../../services/user-authentication.service';
+import { UserAuthenticationService } from 'app/shared/services/user-authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public userProfile: any;
 
-  constructor(
-    public router: Router,
-    private route: ActivatedRoute,
-    private userAuthenticationService: UserAuthenticationService
-  ) {}
+  constructor(private userAuthenticationService: UserAuthenticationService) {}
 
   ngOnInit() {
     this.userProfile = JSON.parse(localStorage.getItem('currentUser'));

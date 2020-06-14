@@ -1,5 +1,6 @@
 $white: #fff;
-$link-color: #97a7c1;
+$gray: gray;
+$link-color: #0f0f0f;
 .menu-button {
   transition: 0.3s ease-in-out;
   -webkit-transform: rotate(0);
@@ -9,23 +10,7 @@ $link-color: #97a7c1;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-.submenu {
-  overflow-y: hidden;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
-  -webkit-transform: scaleY(0);
-  transform: scaleY(0);
-  -webkit-transform-origin: top;
-  transform-origin: top;
-  padding-left: 24px;
-  height: 0;
-}
-.submenu.expanded {
-  -webkit-transform: scaleY(1);
-  transform: scaleY(1);
-  height: auto;
-}
+
 .mat-nav-list a,
 .mat-list-base .mat-list-item {
   font-size: 14px;
@@ -35,10 +20,13 @@ $link-color: #97a7c1;
   color: $link-color;
   font-weight: 300;
 }
+.mat-list-base {
+  padding-top: 0 !important;
+}
 .mat-list-base .submenu .mat-list-item .active-link,
 .mat-list-base .submenu .mat-list-item a:hover,
 .mat-list-base .mat-list-item a:hover {
-  color: $white;
+  color: $gray;
 }
 .active-link {
   color: $white !important;
@@ -56,6 +44,6 @@ $link-color: #97a7c1;
 .mat-nav-list .submenu .mat-list-item {
   height: 34px;
 }
-.sidenav-width{
-  min-width : 202px;
+.sidenav-width {
+  min-width: 202px;
 }

@@ -6,7 +6,11 @@ import { CommonMaterialModule } from './common-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonService, UserAuthenticationService } from './services';
 
-import { HeaderComponent, SidebarComponent } from './components';
+import {
+  HeaderComponent,
+  SidebarComponent,
+  ConfirmDialogComponent,
+} from './components';
 
 import { AuthGuard, GuestGuard } from './guards';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,16 +25,17 @@ import { HttpClientModule } from '@angular/common/http';
     CommonMaterialModule,
     FlexLayoutModule,
   ],
-  declarations: [HeaderComponent, SidebarComponent],
+  declarations: [HeaderComponent, SidebarComponent, ConfirmDialogComponent],
   exports: [
     HeaderComponent,
     SidebarComponent,
+    ConfirmDialogComponent,
     CommonMaterialModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
   ],
-  entryComponents: [],
+  entryComponents: [ConfirmDialogComponent],
   providers: [AuthGuard, GuestGuard, CommonService, UserAuthenticationService],
 })
 export class SharedModule {}

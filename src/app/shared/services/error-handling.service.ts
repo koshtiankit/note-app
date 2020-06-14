@@ -19,30 +19,18 @@ export class MessageService {
    * Shows success message
    * @param message - string
    */
-
   showSuccess(message: string) {
     this.openSnackBar(message, 5000);
   }
 
   /**
-   * Shows success message
+   * Shows snack bar message
    * @param message - string
    * @param duration - number(miliseconds) - duration of auto close message
    */
-
   openSnackBar(message, duration = 2000) {
     this._snackBar.open(message, 'close', {
       duration: duration,
     });
   }
-
-  // openSnackBar(message, duration = 2000, onClickClose?) {
-  //   if (onClickClose) {
-  //     this._snackBar.open(message, 'close');
-  //   } else {
-  //     this._snackBar.open(message, 'close', {
-  //       duration: duration,
-  //     });
-  //   }
-  // }
 }

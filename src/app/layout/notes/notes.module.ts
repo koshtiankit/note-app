@@ -1,3 +1,4 @@
+import { MatDialogRef } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +16,16 @@ import { AddEditNotesComponent } from './add-edit-notes/add-edit-notes.component
     NotesRoutingModule,
     SharedModule,
   ],
-  declarations: [NotesComponent, EditNotesDialogComponent, AddEditNotesComponent],
-  providers: [],
+  declarations: [
+    NotesComponent,
+    EditNotesDialogComponent,
+    AddEditNotesComponent,
+  ],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
 })
 export class NotesModule {}

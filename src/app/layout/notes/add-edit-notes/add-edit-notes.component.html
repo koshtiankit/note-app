@@ -1,5 +1,4 @@
 <form [formGroup]="notesForm">
-
     <mat-card-content>
         <mat-form-field
             fxLayout="column"
@@ -20,7 +19,7 @@
             <mat-label>Category</mat-label>
             <mat-select formControlName="category">
                 <mat-option
-                    *ngFor="let category of categories"
+                    *ngFor="let category of noteService.categories"
                     [value]="category.name"
                 >
                     {{category.name}}

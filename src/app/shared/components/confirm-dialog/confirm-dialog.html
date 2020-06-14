@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{modalData.title}}</h2>
+
+
+<div
+    mat-dialog-content
+    class="mat-typography"
+>
+    <h3>{{modalData.body}}</h3>
+</div>
+<div
+    mat-dialog-actions
+    align="end"
+>
+    <button
+        *ngIf="modalData.cancelButton"
+        mat-button
+        mat-dialog-close
+    >
+        {{modalData.customText ? 'No' : 'Cancel'}}
+    </button>
+    <button
+        color="primary"
+        *ngIf="modalData.okButton"
+        mat-button
+        [mat-dialog-close]="true"
+        cdkFocusInitial
+    >
+        {{modalData.customText ? 'Yes' : 'OK'}}
+    </button>
+</div>

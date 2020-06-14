@@ -1,18 +1,18 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   UserAuthenticationService,
   MessageService,
   CommonService,
-} from '../shared/services';
+} from '@shared';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   public hide: boolean = false;
 
@@ -30,9 +30,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   actionLogin() {
-    if (this.loginForm.invalid) return;
-
-    let dataToPost = {
+    const dataToPost = {
       email: this.loginForm.value.Email,
       password: this.commonService.encodeBase64(this.loginForm.value.Password),
     };
@@ -45,8 +43,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.messageService.showError(responseData.Message);
     }
   }
-
-  ngAfterViewInit() {}
 
   /**
    * Creates login form

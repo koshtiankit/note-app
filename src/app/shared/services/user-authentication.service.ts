@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from './common.service';
 
-declare var ENDPOINTS;
-
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +15,7 @@ export class UserAuthenticationService {
     },
     {
       email: 'parag.khalash@gmail.com',
-      password: 'Pass@123',
+      password: 'Pass@1234',
       FirstName: 'Parag',
       LastName: 'Khalash',
     },
@@ -26,15 +24,12 @@ export class UserAuthenticationService {
   constructor(public router: Router, private commonService: CommonService) {}
 
   /**
-   * login request API
+   * login request
+   * @param data  - contain email and password (object)
    */
   doLogin(data) {
     const { email, password } = data;
 
-    console.log(
-      'this.commonService.decodeBase64(password)',
-      this.commonService.decodeBase64(password)
-    );
     let response = {
       isSuccess: true,
       Message: 'Success',
@@ -45,11 +40,11 @@ export class UserAuthenticationService {
         user.email == email &&
         user.password == this.commonService.decodeBase64(password)
     );
-    console.log('isValidUser', validUser);
 
     if (!validUser || !validUser.length) {
+      //error
       response.isSuccess = false;
-      response.Message = 'Invalid Email/Password.. try again';
+      response.Message = 'Incorrect Email/Password.. try again';
     } else {
       // success
       validUser.map((user) => {
@@ -62,6 +57,9 @@ export class UserAuthenticationService {
     return response;
   }
 
+  /**
+   * Store user information to local storage
+   */
   saveUserInfoToLocalStorage(userInfo) {
     try {
       localStorage.setItem('isLoggedIn', 'true');
@@ -71,11 +69,17 @@ export class UserAuthenticationService {
     }
   }
 
+  /**
+   * logout request
+   */
   doLogout() {
     this.clearLocalStorage();
     this.router.navigate(['./login'], { replaceUrl: true });
   }
 
+  /**
+   * clear localstorage values
+   */
   clearLocalStorage() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');

@@ -1,15 +1,19 @@
 <mat-nav-list *ngIf="isSidenavExpanded">
     <mat-list-item
-        routerLink="users"
+        routerLink="notes"
+        [queryParams]="{category: 'all'}"
         routerLinkActive="active-link"
+        [style.backgroundColor]="'darkgrey'"
     >
         <mat-icon>done</mat-icon>
         <h4 mat-line>All</h4>
     </mat-list-item>
     <mat-list-item
-        routerLink="users"
+        *ngFor="let category of noteService.categories"
+        routerLink="notes"
+        [queryParams]="{category: category.name}"
         routerLinkActive="active-link"
-        color="primary"
+        [style.backgroundColor]="category.name"
     >
         <mat-icon>done</mat-icon>
         <h4 mat-line>Select</h4>
