@@ -29,6 +29,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.createLoginForm();
   }
 
+  /**
+   * Login
+   */
   actionLogin() {
     const dataToPost = {
       email: this.loginForm.value.Email,
