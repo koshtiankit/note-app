@@ -35,7 +35,7 @@
                     >
                         <mat-label>Password</mat-label>
                         <input
-                            [type]="hide ? 'text' : 'password'"
+                            [type]="isShowPassword ? 'text' : 'password'"
                             matInput
                             formControlName="Password"
                             placeholder="Password"
@@ -43,12 +43,10 @@
                         <a
                             mat-icon-button
                             matSuffix
-                            (click)="hide = !hide"
-                            [attr.aria-label]="'Hide password'"
-                            [attr.aria-pressed]="hide"
+                            (click)="isShowPassword = !isShowPassword"
                         >
                             <mat-icon>
-                                {{ hide ? "visibility" : "visibility_off" }}
+                                {{ isShowPassword ? "visibility" : "visibility_off" }}
                             </mat-icon>
                         </a>
                     </mat-form-field>

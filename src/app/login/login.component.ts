@@ -14,7 +14,7 @@ import {
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
-  public hide: boolean = false;
+  public isShowPassword: boolean = false;
 
   constructor(
     public router: Router,
