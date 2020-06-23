@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Notes</title>
-        <base href="https://koshtiankit.github.io/note-app/">
+        <base href="koshtiankit.github.io/note-app/">
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1"
@@ -12,36 +12,23 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
-        <link rel="stylesheet" href="styles.28dd0cb8b272ed3afccd.css">
-    </head>
+    <link rel="stylesheet" href="styles.28dd0cb8b272ed3afccd.css"></head>
     <body class="mat-typography">
+        <!-- Github Pages hack to allow SPA refresh without receiving 404. -->
+        <script>
+            (function () {
+      // Retrieve the URL the user was trying to access when receiving the 404.
+      var redirect = sessionStorage.redirect;
+      // Remove the URL from sessionStorage.
+      delete sessionStorage.redirect;
+      // Check if we actually need to redirect.
+      if (redirect && redirect != location.href) {
+        // We need to redirect to the URL the user was trying to access.
+        history.replaceState(null, null, redirect);
+      }
+    })();
+        </script>
+        <!-- /Github Pages hack. -->
         <app-root></app-root>
-        <script
-            src="runtime-es2015.9ace1db6362f5789b135.js"
-            type="module"
-        ></script>
-        <script
-            src="runtime-es5.9ace1db6362f5789b135.js"
-            nomodule
-            defer
-        ></script>
-        <script
-            src="polyfills-es5.736f2d9faec4ce67a92c.js"
-            nomodule
-            defer
-        ></script>
-        <script
-            src="polyfills-es2015.ae2ff135b6a0a9cb55e7.js"
-            type="module"
-        ></script>
-        <script
-            src="main-es2015.dd41b7db130a96f937ea.js"
-            type="module"
-        ></script>
-        <script
-            src="main-es5.dd41b7db130a96f937ea.js"
-            nomodule
-            defer
-        ></script>
-    </body>
+    <script src="runtime-es2015.85f27ed4bd026c9ffb9f.js" type="module"></script><script src="runtime-es5.85f27ed4bd026c9ffb9f.js" nomodule defer></script><script src="polyfills-es5.5e657f60015c1df344ba.js" nomodule defer></script><script src="polyfills-es2015.1c036d218568a752e64f.js" type="module"></script><script src="main-es2015.ac49de03866f817e3084.js" type="module"></script><script src="main-es5.ac49de03866f817e3084.js" nomodule defer></script></body>
 </html>

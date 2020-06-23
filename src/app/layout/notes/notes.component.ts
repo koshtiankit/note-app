@@ -42,9 +42,9 @@ export class NotesComponent implements OnInit {
 
     //filtering notes based on filter value
     if (this.categoryFilter !== 'all') {
-      this.notes = this.notes.filter(
-        (note) => note.category == this.categoryFilter
-      );
+      this.notes =
+        this.notes &&
+        this.notes.filter((note) => note.category == this.categoryFilter);
     }
     this.isLoading = false;
   }
